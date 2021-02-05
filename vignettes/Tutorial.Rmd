@@ -1,0 +1,69 @@
+---
+title: "Tutorial"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Tutorial}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+# Simple linear regression 
+Simple linear regression is a statistical method that allows us to summarize and study relationships between two vairables. This package provides simple linear regression model using the least squares estimates. 
+
+# Usage 
+sim_lin_R(x, y)
+
+# Arguments 
+* `x`: a numeric vector.
+* `y`: a numeric vector.
+
+# Values
+`sim_lin_R` returns a list containing the following components:
+
+*  `coefficient`: the estimated regression coefficents, intercept and slope.
+*  `standard_error`: the estimated standard errors for the coefficients,intercept and slope. 
+*  `conf_interval`: the 95% confidence intervals for population intercept and slope.  
+*  `residuals`: the residuals, that is response minus fitted values.
+*  `predicted`: the predicted value for each observation
+
+# Example
+We will use the `cars` dataset to show how to use `simplinear` since it is a standard built-in dataset. This dataset can be accessed this dataset simply by typing in cars in your R console. It consists of 50 observations(rows) and 2 variables (columns) – `dist` and `speed`. 
+
+```{r }
+head(cars)
+```
+```{r }
+library("simlinear")
+```
+
+Let `speed` be the predictor variable (x) and `dist`, stopping distance, be the response variable (y). Now, we fit the simple linear model. Note, x and y are two numeric vector with the same length. 
+```{r}
+slm <- simp_lin_R(x = cars$speed, y = cars$dist)
+```
+The scatterplot of the observed data and the estimated line of best fit.
+```{r}
+plot(cars$dist~cars$speed, xlab = 'speed', ylab = 'dist', pch = 20)
+abline(a = slm$coef[1,1], b = slm$coef[2,1], lty = 1)
+```
+The standard errors for the intercept and slope.
+```{r}
+slm$standard_error
+```
+The 95% confidence intervals for the intercept and slope.
+```{r}
+slm$conf_interval
+```
+The residuals shown in scatter plot. 
+```{r}
+plot(slm$residuals,pch=20)
+```
+The predicted values for y. 
+```{r, results='hide'}
+slm$predicted
+```
