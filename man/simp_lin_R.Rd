@@ -12,8 +12,19 @@ simp_lin_R(x, y)
 \item{y}{vector, the response variable in simple linear regression}
 }
 \value{
-a list of regression result
+a list of regression result.
+coefficient: the estimated regression coefficents, intercept and slope.
+standard_error: the estimated standard errors for the coefficients,intercept and slope.
+conf_interval: the 95% confidence intervals for population intercept and slope.
+residuals: the residuals, that is response minus fitted values.
+predicted: the predicted value for each observation.
 }
 \description{
 Fit a simple linear regression model
+}
+\examples{
+slm <- simp_lin_R(x = cars$speed, y = cars$dist)
+slm$standard_error
+slm$conf_interval
+slm$residuals
 }
