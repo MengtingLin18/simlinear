@@ -12,10 +12,8 @@ devtools::install_github('MengtingLin18/simlinear')
 
 ```{r}
 library(simlinear)
-x <- 1:7
-y <- 7:1 + rnorm(7)
 # fit the simple linear model
-slm <- simp_lin_R(x = x, y = y)
-# explore results
+slm <- simp_lin_R(x = cars$speed, y = cars$dist)
+#results
 slm
 ```
