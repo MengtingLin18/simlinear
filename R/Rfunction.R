@@ -14,9 +14,8 @@
 #' slm$residuals
 #' @export
 simp_lin_R <- function(x, y){
-  if(!class(x) %in% c('numeric', 'integer')) stop('x must be a numeric vector.')
-  if(!class(y) %in% c('numeric', 'integer')) stop('y must be a numeric vector.')
-  if(length(x) != length(y)) stop('x and y must be the same length.')
 
+  if(is.numeric(x)=="FALSE" | is.numeric(y)=="FALSE") stop('x or y is not numeric vector.')
+  if(length(x) != length(y)) stop('x and y must be the same length.')
   return(simp_lin_cpp(x = x, y = y))
 }

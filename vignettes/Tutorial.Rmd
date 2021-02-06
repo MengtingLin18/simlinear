@@ -36,9 +36,6 @@ sim_lin_R(x, y)
 We will use the `cars` dataset to show how to use `simplinear` since it is a standard built-in dataset. This dataset can be accessed this dataset simply by typing in cars in your R console. It consists of 50 observations(rows) and 2 variables (columns) – `dist` and `speed`. 
 
 ```{r }
-head(cars)
-```
-```{r }
 library("simlinear")
 ```
 
@@ -63,7 +60,4 @@ The residuals shown in scatter plot.
 ```{r}
 plot(slm$residuals,pch=20)
 ```
-The predicted values for y. 
-```{r, results='hide'}
-slm$predicted
-```
+
